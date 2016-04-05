@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ng-admin']);
+var myApp = angular.module('myApp', ['ng-admin','ng-admin.jwt-auth']);
 
 myApp.config(['NgAdminConfigurationProvider', function(NgAdminConfigurationProvider) {
     var nga = NgAdminConfigurationProvider;
@@ -122,7 +122,9 @@ myApp.config(['NgAdminConfigurationProvider', function(NgAdminConfigurationProvi
     nga.configure(admin);
 }]);
 // map the JSONPlaceholder REST flavor with ng-admin REST flavor
-myApp.config(['RestangularProvider', function (RestangularProvider) {
+myApp.config(['NgAdminConfigurationProvider', 'RestangularProvider', 'ngAdminJWTAuthConfiguratorProvider', function (NgAdminConfigurationProvider, RestangularProvider, ngAdminJWTAuthConfigurator) {
+        var nga = NgAdminConfigurationProvider;
+            ngAdminJWTAuthConfigurator.setJWTAuthURL('http://localhost:8000/login');
     RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
         if (operation == "getList") {
             // custom pagination params

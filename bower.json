@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "ng-admin": "^0.9.1"
+    "ng-admin": "^0.9.1",
+    "ng-admin.jwt-auth": "https://github.com/akagadovskiy/ng-admin-jwt-auth.git#^0.3.0"
   }
 }
